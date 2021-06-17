@@ -28,9 +28,10 @@
 <h3>List Of Users
 </h3>
   <!-- Find a button -->
-  <form th:action="@{/employees/find}" method="POST" class="form-inline">
+  <form action="#" th:action="@{/employees/find}" method="POST" class="form-inline">
     <input value="" class="form-control col-4 mr-3" type="text" name="employeeId" placeholder="Enter id of user...">
-      <button type="submit" class="btn btn-secondary">Find</button>
+      <button type="submit" class="btn btn-secondary mr-2">Find</button>
+      <a th:href="@{/employees/list}" class="btn btn-primary">Reset</a>
   </form>
   <br>
   <table class="table border">

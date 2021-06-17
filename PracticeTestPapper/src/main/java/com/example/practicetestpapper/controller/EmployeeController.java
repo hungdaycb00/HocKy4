@@ -59,14 +59,15 @@ public class EmployeeController {
     public String findEmployee(@RequestParam("employeeId") int theId,
                                     Model theModel) {
 
+
         // get the employee from the service
         Employee theEmployee = employeeService.findById(theId);
 
         // set employee as a model attribute to pre-populate the form
-        theModel.addAttribute("employee", theEmployee);
+        theModel.addAttribute("employees", theEmployee);
 
         // send over to our form
-        return "redirect:/employees/list";
+        return "employees/list-employees";
     }
 
 

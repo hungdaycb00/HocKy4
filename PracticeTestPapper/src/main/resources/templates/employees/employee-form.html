@@ -28,16 +28,16 @@
     <input type="hidden" th:field="*{id}" />
 
     Name <input type="text" th:field="*{name}"
-           class="form-control mb-3 col-4" placeholder="Enter your name">
+           class="form-control mb-3 col-4" placeholder="Enter your name" required>
 
-    Age<input type="text" th:field="*{age}"
-           class="form-control mb-3 col-4" placeholder="Enter your age">
+    Age<input type="number" th:field="*{age}"
+           class="form-control mb-3 col-4" placeholder="Enter your age" required>
 
-    Salary<input type="text" th:field="*{salary}"
-           class="form-control mb-3 col-4" placeholder="Enter your salary">
+    Salary<input type="number" th:field="*{salary}" min="1" step="any"
+           class="form-control mb-3 col-4" placeholder="Enter your salary" required>
 
     <button type="submit" class="btn btn-info col-2">Add</button>
-    <button type="submit" class="btn btn-info col-2">Reset Form</button>
+    <button type="reset" class="btn btn-warning col-2" >Reset Form</button>
 
   </form>
 
