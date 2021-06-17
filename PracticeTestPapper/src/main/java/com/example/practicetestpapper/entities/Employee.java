@@ -14,20 +14,21 @@ public class Employee {
     private String name;
 
     @Column(name = "age")
-    private String age;
+    private int age;
 
     @Column(name = "salary")
-    private String salary;
+    private double salary;
 
     public Employee(){}
-    public Employee(int id, String name, String age, String salary) {
+
+    public Employee(int id, String name, int age, double salary) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.salary = salary;
     }
 
-    public Employee(String name, String age, String salary) {
+    public Employee(String name, int age, double salary) {
         this.name = name;
         this.age = age;
         this.salary = salary;
@@ -49,19 +50,19 @@ public class Employee {
         this.name = name;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public String getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(String salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 }
