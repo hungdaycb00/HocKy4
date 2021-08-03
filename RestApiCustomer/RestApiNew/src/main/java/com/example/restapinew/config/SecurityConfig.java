@@ -32,10 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "api/cus/**").hasAnyRole("ADMIN", "EMPLOYEE", "MANAGER")
-                .antMatchers(HttpMethod.PUT, "api/cus/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "api/cus/**").hasAnyRole("ADMIN", "MANAGER")
-                .antMatchers(HttpMethod.DELETE, "api/cus/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "api/emp/**").hasAnyRole("ADMIN", "EMPLOYEE", "MANAGER")
+                .antMatchers(HttpMethod.PUT, "api/emp/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "api/emp/**").hasAnyRole("ADMIN", "MANAGER")
+                .antMatchers(HttpMethod.DELETE, "api/emp/**").hasRole("ADMIN")
                 .anyRequest().permitAll();
     }
 }
