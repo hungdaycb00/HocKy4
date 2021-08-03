@@ -1,4 +1,4 @@
-package com.example.crudapidemo.config;
+package com.example.restapinew.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,7 +14,8 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig  extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     @Qualifier("securityDataSource")
     private DataSource securityDataSource;
@@ -23,6 +24,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.jdbcAuthentication().dataSource(securityDataSource);
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.

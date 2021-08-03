@@ -1,7 +1,8 @@
-package com.example.crudapidemo.rest;
+package com.example.restapinew.rest;
 
-import com.example.crudapidemo.dao.CustomerRepository;
-import com.example.crudapidemo.entity.Customer;
+
+import com.example.restapinew.dao.EmployeeRepository;
+import com.example.restapinew.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,37 +10,38 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class CustomerRestController {
-    private CustomerRepository repository;
+public class EmployeeRestController {
+
+    private EmployeeRepository repository;
 
     @Autowired
-    public CustomerRestController(CustomerRepository theCustomerRepository) {
-        repository = theCustomerRepository;
+    public EmployeeRestController(EmployeeRepository theEmployeeRepository) {
+        repository = theEmployeeRepository;
     }
 
-    @GetMapping("/cus")
-    List<Customer> all(){
+    @GetMapping("/emp")
+    List<Employee> all() {
         return repository.findAll();
     }
 
-    @PostMapping("/cus")
-    Customer newCustomer(@RequestBody Customer newCustomer){
-        return repository.save(newCustomer);
+    @PostMapping("/emp")
+    Employee newEmployee(@RequestBody Employee newEmployee) {
+        return repository.save(newEmployee);
     }
 
-    @GetMapping("/cus/{id}")
-    Customer one(@PathVariable Integer id){
+    @GetMapping("/emp/{id}")
+    Employee findEmployeeById(@PathVariable Integer id) {
         return repository.findById(id).
-                orElseThrow(() -> new CustomerNotFoundException(id));
+                orElseThrow(() -> new EmployeeNotFoundException(id));
     }
 
-    @DeleteMapping("/cus/{id}")
+    @DeleteMapping("/emp/{id}")
     void deleteCustomer(@PathVariable Integer id){
         repository.deleteById(id);
     }
 
-    @PutMapping("/cus/{id}")
-    Customer replaceCustomer(@RequestBody Customer newCustomer, @PathVariable Integer id){
+    @PutMapping("/emp/{id}")
+    Employee replaceCustomer(@RequestBody Employee newCustomer, @PathVariable Integer id){
 
         return repository.findById(id)
                 .map(customer -> {

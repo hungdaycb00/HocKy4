@@ -1,10 +1,10 @@
-package com.example.crudapidemo;
+package com.example.restapinew;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CrudapidemoApplicationTests {
+class RestApiNewApplicationTests {
 
     @Test
     void contextLoads() {

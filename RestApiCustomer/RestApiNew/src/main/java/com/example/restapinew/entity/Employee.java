@@ -1,20 +1,15 @@
-package com.example.crudapidemo.entity;
+package com.example.restapinew.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="customer")
-public class Customer {
+@Table(name="employee")
+public class Employee {
 
     // define fields
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
@@ -30,11 +25,11 @@ public class Customer {
 
     // define constructors
 
-    public Customer() {
+    public Employee() {
 
     }
 
-    public Customer(int id, String firstName, String lastName, String email) {
+    public Employee(int id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -42,7 +37,7 @@ public class Customer {
     }
 
 
-    public Customer(String firstName, String lastName, String email) {
+    public Employee(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

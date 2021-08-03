@@ -1,13 +1,13 @@
-package com.example.crudapidemo;
+package com.example.restapinew;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CrudapidemoApplication {
+public class RestApiNewApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CrudapidemoApplication.class, args);
+        SpringApplication.run(RestApiNewApplication.class, args);
     }
 
 }

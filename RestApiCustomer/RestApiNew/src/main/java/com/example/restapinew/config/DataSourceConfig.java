@@ -1,4 +1,4 @@
-package com.example.crudapidemo.config;
+package com.example.restapinew.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -10,27 +10,27 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import javax.sql.DataSource;
-@Configuration
-@EnableJpaRepositories(basePackages = {"com.example.crudapidemo.dao"})
-public class DataSourceConfig {
 
+@Configuration
+@EnableJpaRepositories(basePackages = {"com.example.restapinew.dao"})
+public class DataSourceConfig {
     @Primary
     @Bean
     @ConfigurationProperties(prefix = "app.datasource")
-    public DataSource appDataSource() {
-        return DataSourceBuilder.create().build();
+    public DataSource appDataSource() {return DataSourceBuilder.create().build();
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.data.jpa.entity")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder, DataSource appDataSource) {
+    @ConfigurationProperties(prefix="spring.data.jpa.entity")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+            EntityManagerFactoryBuilder builder, DataSource appDataSource) {
         return builder
                 .dataSource(appDataSource)
                 .build();
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "security.datasource")
+    @ConfigurationProperties(prefix="security.datasource")
     public DataSource securityDataSource() {
         return DataSourceBuilder.create().build();
     }
