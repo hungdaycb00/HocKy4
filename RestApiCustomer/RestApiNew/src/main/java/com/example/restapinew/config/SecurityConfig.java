@@ -27,15 +27,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.
-                csrf().disable().
-                sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+        http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "api/emp/**").hasAnyRole("ADMIN", "EMPLOYEE", "MANAGER")
-                .antMatchers(HttpMethod.PUT, "api/emp/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "api/emp/**").hasAnyRole("ADMIN", "MANAGER")
-                .antMatchers(HttpMethod.DELETE, "api/emp/**").hasRole("ADMIN")
-                .anyRequest().permitAll();
+                 .antMatchers(HttpMethod.GET, "/api/emp/**").permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/emp/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/emp/**").hasAnyRole("ADMIN", "MANAGER")
+                .antMatchers(HttpMethod.DELETE, "/api/emp/**").hasRole("ADMIN")
+                .anyRequest().permitAll()
+                .and()
+                .httpBasic()
+                .and()
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 }

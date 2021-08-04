@@ -1,26 +1,33 @@
 package com.example.restapinew.service;
 
+import com.example.restapinew.dao.EmployeeRepository;
 import com.example.restapinew.entity.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class EmployeeServiceImp implements EmployeeService{
-    private EmployeeService repository;
 
 
-    public EmployeeServiceImp(EmployeeService repository) {
+    private EmployeeRepository repository;
+
+    @Autowired
+    public EmployeeServiceImp(EmployeeRepository repository) {
         this.repository = repository;
     }
 
     @Override
     public List<Employee> findAll() {
-        return repository.findAll();
+        List<Employee> employees = repository.findAll();
+        return employees;
     }
 
     @Override
     public Employee findById(int theId) {
-        Optional<Employee> result = Optional.ofNullable(repository.findById(theId));
+        Optional<Employee> result =repository.findById(theId);
 
         Employee theEmployee = null;
 
@@ -50,7 +57,7 @@ public class EmployeeServiceImp implements EmployeeService{
         List<Employee> results = null;
 
         if (theName != null && (theName.trim().length() > 0)) {
-            results = repository.searchBy(theName);
+            results = repository.findByFirstNameContainsOrLastNameContainsAllIgnoreCase(theName,theName);
         }
         else {
             results = findAll();

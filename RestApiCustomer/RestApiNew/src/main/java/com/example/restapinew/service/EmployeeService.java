@@ -1,6 +1,7 @@
 package com.example.restapinew.service;
 
 import com.example.restapinew.entity.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
