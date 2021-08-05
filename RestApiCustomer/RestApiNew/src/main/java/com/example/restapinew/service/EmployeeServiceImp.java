@@ -43,8 +43,9 @@ public class EmployeeServiceImp implements EmployeeService{
     }
 
     @Override
-    public void save(Employee theEmployee) {
+    public Employee save(Employee theEmployee) {
         repository.save(theEmployee);
+        return theEmployee;
     }
 
     @Override
@@ -65,4 +66,21 @@ public class EmployeeServiceImp implements EmployeeService{
 
         return results;
     }
+
+    @Override
+    public Employee replaceEmployee(Employee newEmployee, Integer id) {
+
+        return  repository.findById(id)
+                .map(employee -> {
+                    employee.setFirstName(newEmployee.getFirstName());
+                    employee.setLastName(newEmployee.getLastName());
+                    employee.setEmail(newEmployee.getEmail());
+                    return repository.save(employee);
+                })
+                .orElseGet(() -> {
+                    newEmployee.setId(id);
+                    return repository.save(newEmployee);
+                });
+    }
+
 }

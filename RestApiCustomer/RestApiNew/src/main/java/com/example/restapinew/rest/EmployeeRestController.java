@@ -13,14 +13,16 @@ import java.util.List;
 @RequestMapping("/api")
 public class EmployeeRestController {
 
+    //private EmployeeRepository repository;
+    private EmployeeService repository;
 
-    private EmployeeRepository repository;
-    //private EmployeeService repository;
-
-    @Autowired
-    public EmployeeRestController(EmployeeRepository theEmployeeRepository) {
-        repository = theEmployeeRepository;
+    public EmployeeRestController(EmployeeService repository) {
+        this.repository = repository;
     }
+//    @Autowired
+//    public EmployeeRestController(EmployeeRepository theEmployeeRepository) {
+//        repository = theEmployeeRepository;
+//    }
 
     @GetMapping("/emp")
     List<Employee> all() {
@@ -33,9 +35,8 @@ public class EmployeeRestController {
     }
 
     @GetMapping("/emp/{id}")
-    Employee one(@PathVariable Integer id) {
-        return repository.findById(id).
-                orElseThrow(() -> new EmployeeNotFoundException(id));
+    Employee find(@PathVariable Integer id) {
+        return repository.findById(id);
     }
 
     @DeleteMapping("/emp/{id}")
@@ -46,16 +47,6 @@ public class EmployeeRestController {
     @PutMapping("/emp/{id}")
     Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Integer id) {
 
-        return repository.findById(id)
-                .map(employee -> {
-                    employee.setFirstName(newEmployee.getFirstName());
-                    employee.setLastName(newEmployee.getLastName());
-                    employee.setEmail(newEmployee.getEmail());
-                    return repository.save(employee);
-                })
-                .orElseGet(() -> {
-                    newEmployee.setId(id);
-                    return repository.save(newEmployee);
-                });
+        return repository.replaceEmployee(newEmployee, id);
     }
 }
