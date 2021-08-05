@@ -13,16 +13,12 @@ import java.util.List;
 @RequestMapping("/api")
 public class EmployeeRestController {
 
-    //private EmployeeRepository repository;
     private EmployeeService repository;
 
     public EmployeeRestController(EmployeeService repository) {
         this.repository = repository;
     }
-//    @Autowired
-//    public EmployeeRestController(EmployeeRepository theEmployeeRepository) {
-//        repository = theEmployeeRepository;
-//    }
+
 
     @GetMapping("/emp")
     List<Employee> all() {
